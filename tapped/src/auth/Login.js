@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Form, FormGroup, Label, Input, Button} from 'reactstrap';
 
 const Login = (props) => {
-    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     return(
@@ -10,8 +10,8 @@ const Login = (props) => {
             <h1>Login</h1>
             <Form>
                 <FormGroup>
-                    <Label htmlFor="username">Username</Label>
-                    <Input name = "username" value={username}/>
+                    <Label htmlFor="email">Email</Label>
+                    <Input name = "email" value={email}/>
                 </FormGroup>
                 <FormGroup>
                     <Label htmlFor="password">Password</Label>
