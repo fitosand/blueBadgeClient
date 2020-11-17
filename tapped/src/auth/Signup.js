@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Form, FormGroup, Label, Input, Button} from 'reactstrap';
 
 const Signup = (props) => {
-    const [username, setEmail] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     return(
@@ -10,7 +10,7 @@ const Signup = (props) => {
             <h1>Sign Up</h1>
             <Form>
                 <FormGroup>
-                    <Label htmlFor="username">Email</Label>
+                    <Label htmlFor="email">Email</Label>
                     <Input onChange={(e) => setEmail(e.target.value)} name="email" value={email}/>
                 </FormGroup>
                 <FormGroup>
