@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Form, FormGroup, Label, Input, Button} from 'reactstrap';
 
-const Login = (props) => {
+const Update = (props) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -25,8 +25,8 @@ const Login = (props) => {
             <h1>Update Email</h1>
             <Form>
                 <FormGroup>
-                    <Label htmlFor="username">Email</Label>
-                    <Input name = "username" value={username}/>
+                    <Label htmlFor="email">Email</Label>
+                    <Input name = "email" value={email}/>
                 </FormGroup>
 
                 <Button type="submit">Update Email</Button>
@@ -35,4 +35,4 @@ const Login = (props) => {
     )
 }
 
-export default Login;
+export default Update;
