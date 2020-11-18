@@ -2,11 +2,16 @@ import React from 'react';
 import {Container, Row, Col} from 'reactstrap';
 import Signup from './Signup';
 import Login from './Login';
+
+import Navbar from "../components/Navbar"
+=======
 import Update from './UpdateUser'
+
 
 const Auth = (props) => {
     return (
         <Container className="auth-container">
+            <Navbar />
             <Row>
                 <Col md="6" className="login-col">
                     <Login updateToken={props.updateToken}/>

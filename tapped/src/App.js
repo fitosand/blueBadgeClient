@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import './App.css';
 import Auth from './auth/Auth';
+// import { BrowserRouter as Router, Switch, Route } from "react-dom";
+
 
 
 function App() {
@@ -25,7 +27,7 @@ function App() {
 
   return (
     <div>
-
+      
       <Auth updateToken={updateToken}/>
 
     </div>
@@ -34,3 +36,6 @@ function App() {
 
 
 export default App;
+
+
+
