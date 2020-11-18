@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import './App.css';
 import Auth from './auth/Auth';
 
+
 function App() {
   const [sessionToken, setSessionToken] = useState('');
 
@@ -17,6 +18,11 @@ function App() {
     console.log(sessionToken);
   }
 
+  const clearToken = () => {
+    localStorage.clear();
+    setSessionToken('');
+  }
+
   return (
     <div>
 
@@ -25,5 +31,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;
