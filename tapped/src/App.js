@@ -4,6 +4,7 @@ import Auth from './auth/Auth';
 // import { BrowserRouter as Router, Switch, Route } from "react-dom";
 
 
+
 function App() {
   const [sessionToken, setSessionToken] = useState('');
 
@@ -19,6 +20,11 @@ function App() {
     console.log(sessionToken);
   }
 
+  const clearToken = () => {
+    localStorage.clear();
+    setSessionToken('');
+  }
+
   return (
     <div>
       
@@ -27,6 +33,7 @@ function App() {
     </div>
   );
 }
+
 
 export default App;
 
