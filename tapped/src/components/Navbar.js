@@ -1,7 +1,8 @@
 import React from "react";
-import { Link } from "react-dom";
+import { Link } from "react-router-dom";
 
 function Navbar() {
+  console.log("hi");
   return (
     <div className="navbar">
       <div className="Top">
