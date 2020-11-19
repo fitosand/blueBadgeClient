@@ -12,9 +12,6 @@ const Auth = (props) => {
                     <Login updateToken={props.updateToken}/>
                 </Col>
                 <Col md="6" className="login-col">
-                    <Update updateToken={props.updateToken}/>
-                </Col>
-                <Col md="6" className="login-col">
                     <Update />
                 </Col>
             </Row>
