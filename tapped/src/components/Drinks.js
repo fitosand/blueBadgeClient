@@ -11,7 +11,7 @@ const DrinksApp = (props) => (
           {({ isVisible }) => {
             const percentage = isVisible ? props.drPoints : 0;
             return (
-              <CircularProgressbar value={percentage} text={`${percentage}%`} />
+              <CircularProgressbar value={(percentage/10)*100} text={`${percentage}/10`} />
             );
           }}
         </VisibilitySensor>

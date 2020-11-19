@@ -10,14 +10,16 @@ const Login = (props) => {
         event.preventDefault();
         fetch('http://localhost:3000/user/login', {
             method: 'POST',
-            body: JSON.stringify({user: {username: email, password}}),
-            headers: new Headers({
-                'Content-Type': 'application/json'
-            })
+            body: JSON.stringify({user: {username: email, password: password}}),
+            headers: {
+                'Content-Type': 'application/json',
+                "access-control-allow-origin" : "*"
+            }
         }).then(
             (response) => response.json()
         ).then((data) => {
             props.updateToken(data.sessionToken);
+            console.log(data.sessionToken);
         })
     }
 
@@ -34,8 +36,9 @@ const Login = (props) => {
                     <Input onChange={(e) => setPassword(e.target.value)} name="password" value={password}/>
                 </FormGroup>
                 <Button type="submit">Login</Button>
-                <Signup updateToken={props.updateToken}/>
+        
             </Form>
+            <Signup updateToken={props.updateToken}/>
         </div>
     )
 }

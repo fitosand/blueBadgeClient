@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Container, Row, Col} from 'reactstrap';
+import {Col} from 'reactstrap';
 import Signup from './Signup';
 import Login from './Login';
 import Update from './UpdateUser'
@@ -14,7 +14,7 @@ const Auth = (props) => {
             <br></br>
             <Col md="6" className="login-col">
                     <Login updateToken={props.updateToken}/>
-                </Col>
+            </Col>
                 {/* <Col md="6" className="login-col">
                     <Update />
                 </Col> */}
