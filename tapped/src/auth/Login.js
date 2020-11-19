@@ -5,21 +5,21 @@ import Signup from "./Signup";
 const Login = (props) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
+    
     const handleSubmit = (event) => {
         event.preventDefault();
-        fetch('http://localhost:3000/user/login', {
+        fetch('http://localhost:3000/user/signin', {
             method: 'POST',
             body: JSON.stringify({user: {username: email, password: password}}),
             headers: {
                 'Content-Type': 'application/json',
-                "access-control-allow-origin" : "*"
             }
         }).then(
             (response) => response.json()
+           
         ).then((data) => {
             props.updateToken(data.sessionToken);
-            console.log(data.sessionToken);
+            console.log(data);
         })
     }
 

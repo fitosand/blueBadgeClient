@@ -10,9 +10,8 @@ import Login from "./components/Login";
 
 
 function App() {
+  
   const [sessionToken, setSessionToken] = useState('');
-
-
 
   useEffect(() => {
     if (localStorage.getItem('token')){
