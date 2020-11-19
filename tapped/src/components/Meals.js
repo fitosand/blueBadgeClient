@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState }  from "react";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import VisibilitySensor from "react-visibility-sensor";
 import Update from "../auth/UpdateUser";
 
 function MealsApp(props) {
+
 
   const UpdateMPoints = () => {
 
@@ -46,7 +47,10 @@ function MealsApp(props) {
         <ion-icon name="restaurant-outline"></ion-icon>
         <div>Meals</div>
         <br></br>
+        {props.mPoints > 10 ?  
+        <button onClick={UpdateMPoints} className="RedeemButton">Redeem</button>:
         <button onClick={UpdateMPoints} className="CheckInButton">check in</button>
+        }
       </div>
     </div>
   </div>

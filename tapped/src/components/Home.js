@@ -25,11 +25,16 @@ function Home() {
             (response) => response.json()
         ).then((data) => {
             // props.updateToken(data.sessionToken)
-            console.log(data)
-            setMPoints(data[0].numberOfPoints);// ***** DRINKS POINTS **** //
-            setdrPoints(data[1].numberOfPoints);// ***** MEAL POINTS **** //
-            setdePoints(data[2].numberOfPoints);// ***** DESSERT POINTS **** //
-            // console.log(mPoints, drPoints, dePoints);
+                         
+              //***** MEAL POINTS **** //
+              setMPoints(data[0].numberOfPoints);
+                      
+              // ***** DRINKS POINTS **** //
+              setdrPoints(data[1].numberOfPoints); 
+              
+              //***** DESSERT POINTS **** //
+              setdePoints(data[2].numberOfPoints);// 
+          
         })
     
   };
