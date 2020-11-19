@@ -1,21 +1,22 @@
 import React, {useState} from 'react';
 import {Form, FormGroup, Label, Input, Button} from 'reactstrap';
 
-const Login = (props) => {
+const Update = (props) => {
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        fetch('http://localhost:3000//user/update', {
-            method: 'POST',
-            body: JSON.stringify({user:{email: email, password: password}}),
+        fetch('http://localhost:3000/user/update', {
+            method: 'PUT',
+            body: JSON.stringify({user:{email: email}}),
             headers: new Headers({
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                "Authorization": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNjA1NzI5ODE0LCJleHAiOjE2MzcyNjU4MTR9.Kq7UKbWMEbNJinAo_bmjboLWoABeL8pWxXyapkIB3kE'
             })
         }) .then (
             (response) => response.json()
         ) .then((data) => {
+            console.log(data);
             props.updateToken(data.sessionToken)
         })
     }
@@ -23,10 +24,11 @@ const Login = (props) => {
     return(
         <div>
             <h1>Update Email</h1>
-            <Form>
+            <Form onSubmit = {handleSubmit}>
+
                 <FormGroup>
-                    <Label htmlFor="username">Email</Label>
-                    <Input name = "username" value={username}/>
+                    <Label htmlFor="email">Email</Label>
+                    <Input required name = "email" value={email} onChange = {(e) => setEmail(e.target.email)}/>
                 </FormGroup>
 
                 <Button type="submit">Update Email</Button>
@@ -35,4 +37,4 @@ const Login = (props) => {
     )
 }
 
-export default Login;
+export default Update;

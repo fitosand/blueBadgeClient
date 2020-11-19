@@ -8,6 +8,7 @@ import Home from "./components/Home";
 import Login from "./components/Login";
 
 
+
 function App() {
   const [sessionToken, setSessionToken] = useState('');
 
@@ -26,6 +27,11 @@ function App() {
     console.log(sessionToken);
   }
 
+  const clearToken = () => {
+    localStorage.clear();
+    setSessionToken('');
+  }
+
   return (
     <Router>
       <div className="App">
@@ -42,6 +48,7 @@ function App() {
     </Router>
   );
 }
+
 
 export default App;
 
