@@ -13,7 +13,7 @@ function App() {
   const [sessionToken, setSessionToken] = useState('');
 
 
-  const isLoggedIn = true;
+  const isLoggedIn = false;
 
   useEffect(() => {
     if (localStorage.getItem('token')){
