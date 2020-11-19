@@ -25,9 +25,9 @@ function Home() {
             (response) => response.json()
         ).then((data) => {
             // props.updateToken(data.sessionToken)
-            
-            setMPoints(data[0].numberOfPoints);// ***** MEAL POINTS **** //
-            setdrPoints(data[1].numberOfPoints);// ***** DRINKS POINTS **** //
+            console.log(data)
+            setMPoints(data[0].numberOfPoints);// ***** DRINKS POINTS **** //
+            setdrPoints(data[1].numberOfPoints);// ***** MEAL POINTS **** //
             setdePoints(data[2].numberOfPoints);// ***** DESSERT POINTS **** //
             // console.log(mPoints, drPoints, dePoints);
         })
