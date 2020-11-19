@@ -1,38 +1,159 @@
+/* general styling */
+* {
+  margin: 0;
+  text-decoration: none;
+}
+
+button {
+  outline: none;
+}
+
+/* colors
+#00FFC5;
+#ADF5FF;
+#0075A2;
+#481620;
+#D55672;
+*/
+
 .App {
+  font-family: sans-serif;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.navbar {
+  background-color: #0075a2;
+  padding: 20px;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.logo {
+  float: left;
+}
+.Login {
+  margin-left: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.Top {
+  text-align: right;
+}
+
+.Center {
+  width: 90%;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.Wrapper {
+  text-align: center;
+  padding: 20px;
+  min-width: 300px;
+  color: black;
+  background-color: white;
+  margin: 10px 20px;
+  box-shadow: 0 6px 15px rgba(36, 37, 38, 0.08);
+  border-radius: 5px;
+  border: 1px solid lightgray;
+}
+
+.Wrapper:hover {
+  transition: box-shadow 0.25s ease 0s, transform 0.25s ease 0s,
+    transform 0.5s cubic-bezier(0.6, 0.2, 0.1, 1) 0s,
+    opacity 0.5s cubic-bezier(0.6, 0.2, 0.1, 1) 0s;
+  transform: translateY(0) scale(1);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.Icon {
+  /* font-size: 48px; */
+  width: 100px;
+  height: 50px;
+  padding: 20px;
+  /* background-color: lightcoral; */
+  border-radius: 50%;
+  color: white;
+  display: flex; /* or inline-flex */
+  align-items: center;
+  justify-content: center;
+}
+
+.SubHeading {
+  font-size: 12px;
+  color: gray;
+}
+
+.CheckInButton {
+  padding: 10px 20px;
+  border-radius: 20px;
+  background-color: #0075a2;
+  border: none;
+  color: white;
+}
+
+.CheckInButton:hover {
+  opacity: 0.8;
+  transform: scale(1);
+}
+
+.InsideBox {
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+  align-items: center;
+}
+
+.LoginWrapper {
+  text-align: center;
+  position: relative;
+  align-content: middle;
+  padding: 20px 5px;
+  min-width: 300px;
+  height: 300px;
+  color: black;
+  background-color: white;
+  margin: 10px 20px;
+  border-radius: 5px;
+  border: 1px solid lightgray;
+}
+
+.LoginInputBoxes {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.InputText {
+  padding: 10px 20px;
+  margin-bottom: 10px;
+}
+
+.SubmitButtons {
+  text-align: center;
+}
+
+.loginButton {
+  width: 100%;
+  padding: 10px 0;
+  margin: 10px 0;
+}
+
+.regButton {
+  border: none;
+  background: none;
+  text-decoration: underline;
+}
+
+.regButton:hover {
+  color: red;
+  cursor: pointer;
 }
