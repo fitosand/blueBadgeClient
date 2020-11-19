@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Form, FormGroup, Label, Input, Button} from 'reactstrap';
 import Signup from "./Signup";
+import { Link } from "react-router-dom";
 
 const Login = (props) => {
     const [email, setEmail] = useState('');
@@ -25,20 +26,21 @@ const Login = (props) => {
 
     return(
         <div>
-            <h1>Login</h1>
+            
             <Form onSubmit={handleSubmit}> 
                 <FormGroup>
                     <Label htmlFor="email">Email</Label>
-                    <Input onChange={(e) => setEmail(e.target.value)} name="email" value={email}/>
+                    <Input className="InputText" onChange={(e) => setEmail(e.target.value)} name="email" value={email}/>
                 </FormGroup>
                 <FormGroup>
                     <Label htmlFor="password">Password</Label>
-                    <Input onChange={(e) => setPassword(e.target.value)} name="password" value={password}/>
+                    <Input className="InputText" onChange={(e) => setPassword(e.target.value)} name="password" value={password}/>
                 </FormGroup>
-                <Button type="submit">Login</Button>
+                <Button className="loginButton" type="submit">Login</Button>
         
             </Form>
-            <Signup updateToken={props.updateToken}/>
+            {/* <Link updateToken={props.updateToken} to="/signup">Register</Link> */}
+            <Signup updateToken={props.updateToken}  />
         </div>
     )
 }

@@ -10,6 +10,7 @@ const Auth = (props) => {
     return (
         <div className="LoginWrapper">
             <div className="LoginInputBoxes">
+            <h1>🍻</h1>
             <h2>Tapped</h2>
             <br></br>
             <Col md="6" className="login-col">

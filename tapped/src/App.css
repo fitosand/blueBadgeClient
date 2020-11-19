@@ -2,7 +2,9 @@
 * {
   margin: 0;
   text-decoration: none;
+  
 }
+
 
 button {
   outline: none;
@@ -29,6 +31,7 @@ button {
 
 .logo {
   float: left;
+  font-weight: 700;
 }
 .Login {
   margin-left: 10px;

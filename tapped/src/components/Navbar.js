@@ -18,7 +18,7 @@ function Navbar() {
     <div className="navbar">
       <div className="Top">
         <span className="logo">
-          <Link to="/">logo</Link>
+          <Link to="/">Tapped</Link>
         </span>
         <Link to="/stats">Stats</Link>
         <button onClick={clearToken} className="Login"> logout </button>
