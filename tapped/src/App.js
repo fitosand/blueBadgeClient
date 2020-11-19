@@ -13,7 +13,7 @@ function App() {
   const [sessionToken, setSessionToken] = useState('');
 
 
-  const isLoggedIn = true;
+  const isLoggedIn = false;
 
   useEffect(() => {
     if (localStorage.getItem('token')){
@@ -40,8 +40,8 @@ function App() {
         <div className="Center">
           <Switch>
             <Route path="/stats" component={Stats} />
-            <Route path="/" exact component={isLoggedIn ? Home : Login} />
-            <Auth />
+            <Route path="/" exact component={isLoggedIn ? Home : Auth} />
+            
           </Switch>
         </div>
       </div>
