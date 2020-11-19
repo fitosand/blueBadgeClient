@@ -1,15 +1,15 @@
 import React from 'react';
-import { BrowserRouter as Router } from "react-router-dom"
+
 import {Container, Row, Col} from 'reactstrap';
 import Signup from './Signup';
 import Login from './Login';
-import Navbar from "../components/Navbar"
+
 
 const Auth = (props) => {
     return (
-        <Router>
+        
         <Container className="auth-container">
-            <Navbar />
+            
             <Row>
                 <Col md="6">
                     <Signup updateToken={props.updateToken} />
@@ -19,7 +19,7 @@ const Auth = (props) => {
                 </Col>
             </Row>
         </Container>
-        </Router>
+       
     )
 }
 
