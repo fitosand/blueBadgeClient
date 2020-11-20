@@ -47,7 +47,7 @@ function DrinksApp(props){
         <ion-icon name="beer-outline"></ion-icon>
         <div>Drinks</div>
         <br></br>
-        {props.drPoints > 10 ? 
+        {props.drPoints > 9 ? 
         <button className="RedeemButton">Redeem</button>:
         <button onClick={UpdateDrPoints} className="CheckInButton">check in</button>
         }       

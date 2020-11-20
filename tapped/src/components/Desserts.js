@@ -46,7 +46,7 @@ function DessertsApp(props) {
         <ion-icon name="ice-cream-outline"></ion-icon>
         <div>Desserts</div>
         <br></br>
-        {props.dePoints > 10 ?  
+        {props.dePoints > 9 ?  
         <button className="RedeemButton">Redeem</button>:
         <button onClick={UpdateDePoints} className="CheckInButton">check in</button>
         }  

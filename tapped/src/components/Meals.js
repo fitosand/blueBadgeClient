@@ -6,9 +6,9 @@ import Update from "../auth/UpdateUser";
 
 function MealsApp(props) {
 
-
   const UpdateMPoints = () => {
 
+  
     fetch("http://localhost:3000/log/update", {
       method: 'PUT',
       body: JSON.stringify({"typeOfPoint": "meals"}),
@@ -47,7 +47,7 @@ function MealsApp(props) {
         <ion-icon name="restaurant-outline"></ion-icon>
         <div>Meals</div>
         <br></br>
-        {props.mPoints > 10 ?  
+        {props.mPoints > 9 ? 
         <button onClick={UpdateMPoints} className="RedeemButton">Redeem</button>:
         <button onClick={UpdateMPoints} className="CheckInButton">check in</button>
         }
