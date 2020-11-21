@@ -23,6 +23,7 @@ const LoginPage = () => (
         </div>
       </form>
     </div>
+    <p>Get 3 free points when you sign up!</p>
   </div>
 );
 

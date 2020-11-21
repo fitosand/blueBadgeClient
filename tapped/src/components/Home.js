@@ -24,8 +24,6 @@ function Home() {
         }).then(
             (response) => response.json()
         ).then((data) => {
-         
-            console.log(data);
             // props.updateToken(data.sessionToken)
                          
               //***** MEAL POINTS **** //
@@ -36,8 +34,7 @@ function Home() {
               
               //***** DESSERT POINTS **** //
               setdePoints(data[2].numberOfPoints);// 
-
-      
+          
         })
     
   };

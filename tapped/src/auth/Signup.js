@@ -9,6 +9,7 @@ const Signup = (props) => {
     const [password, setPassword] = useState('');
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);
+    const [ userID, setUserId ] = useState('');
     const {
         buttonLabel,
         className
@@ -26,6 +27,32 @@ const Signup = (props) => {
             (response) => response.json()
         ).then((data) => {
             props.updateToken(data.sessionToken)
+            setUserId(data.user.id);
+            fetch("http://localhost:3000/log/post", {
+                method: 'POST',
+                body: JSON.stringify({"typeOfPoint": "meals", "numberOfPoints": "1"}),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': data.sessionToken
+                    
+                }});
+            fetch("http://localhost:3000/log/post", {
+                method: 'POST',
+                body: JSON.stringify({"typeOfPoint": "drinks", "numberOfPoints": "1"}),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': data.sessionToken
+                    
+                }});
+            fetch("http://localhost:3000/log/post", {
+                method: 'POST',
+                body: JSON.stringify({"typeOfPoint": "desserts", "numberOfPoints": "1"}),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': data.sessionToken
+                    
+                }});
+            
         })
         console.log(email, password);
     }

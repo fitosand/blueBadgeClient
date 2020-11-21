@@ -43,7 +43,7 @@ function DessertsApp(props) {
         </VisibilitySensor>
       </div>
       <div>
-        <ion-icon name="ice-cream-outline"></ion-icon>
+        
         <div>Desserts</div>
         <br></br>
         {props.dePoints > 9 ?  

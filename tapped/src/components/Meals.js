@@ -48,7 +48,7 @@ function MealsApp(props) {
         <div>Meals</div>
         <br></br>
         {props.mPoints > 9 ? 
-        <button onClick={UpdateMPoints} className="RedeemButton">Redeem</button>:
+        <button onClick={UpdateMPoints} className="RedeemButton">Redeem (1)</button>:
         <button onClick={UpdateMPoints} className="CheckInButton">check in</button>
         }
       </div>
