@@ -6,13 +6,13 @@ import VisibilitySensor from "react-visibility-sensor";
 function DessertsApp(props) {
 
   const UpdateDePoints = () => {
-
+    const sessionToken = localStorage.getItem("sessionToken")
     fetch("http://localhost:3000/log/update", {
       method: 'PUT',
       body: JSON.stringify({"typeOfPoint": "desserts"}),
       headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjA1MDE5MTI5LCJleHAiOjE2MzY1NTUxMjl9.2GU9iieKsuqA4hrAcXTfptwDm5fEQ1R3thgkDZrVThc'
+          'Authorization': sessionToken
           
       }
       }).then(

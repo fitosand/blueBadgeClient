@@ -8,14 +8,14 @@ function DrinksApp(props){
   
 
   const UpdateDrPoints = () => {
-    
+    const sessionToken = localStorage.getItem("sessionToken")
     console.log("did");
     fetch("http://localhost:3000/log/update", {
       method: 'PUT',
       body: JSON.stringify({"typeOfPoint": "drinks"}),
       headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjA1MDE5MTI5LCJleHAiOjE2MzY1NTUxMjl9.2GU9iieKsuqA4hrAcXTfptwDm5fEQ1R3thgkDZrVThc'
+          'Authorization': sessionToken
           
       }
       }).then(

@@ -4,8 +4,13 @@ import "react-circular-progressbar/dist/styles.css";
 import VisibilitySensor from "react-visibility-sensor";
 import Update from "../auth/UpdateUser";
 
-function MealsApp(props) {
 
+
+//this.setState({ count: this.state.count + 1 })
+
+
+function MealsApp(props) {
+  const sessionToken = localStorage.getItem("sessionToken")
   const UpdateMPoints = () => {
 
   
@@ -14,7 +19,7 @@ function MealsApp(props) {
       body: JSON.stringify({"typeOfPoint": "meals"}),
       headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjA1MDE5MTI5LCJleHAiOjE2MzY1NTUxMjl9.2GU9iieKsuqA4hrAcXTfptwDm5fEQ1R3thgkDZrVThc'
+          'Authorization': sessionToken
           
       }
       }).then(

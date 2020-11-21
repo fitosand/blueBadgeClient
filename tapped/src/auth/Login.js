@@ -11,7 +11,7 @@ const Login = (props) => {
         event.preventDefault();
         fetch('http://localhost:3000/user/signin', {
             method: 'POST',
-            body: JSON.stringify({user: {username: email, password: password}}),
+            body: JSON.stringify({email: email, password: password}),
             headers: {
                 'Content-Type': 'application/json',
             }
@@ -19,6 +19,9 @@ const Login = (props) => {
             (response) => response.json()
            
         ).then((data) => {
+            localStorage.setItem("userID", data.user.id)
+            localStorage.setItem("sessionToken", data.sessionToken)
+            console.log(data)
             props.updateToken(data.sessionToken);
             console.log(data.sessionToken);
         })

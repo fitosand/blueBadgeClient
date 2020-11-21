@@ -3,8 +3,12 @@ import "../App.css";
 import Desserts from "./Desserts";
 import Meals from "./Meals";
 import Drinks from "./Drinks";
+import Login from "../auth/Login";
+
+
 
 function Home() {
+  const userID = localStorage.getItem("userID")
   useEffect(() => {
     fetchItems();
   }, []);
@@ -16,7 +20,7 @@ function Home() {
   const fetchItems = async () => {
     
     //need to specify user (stats/:id) -> passed as prop from Nav?
-    fetch("http://localhost:3000/log/stats/2", {
+    fetch(`http://localhost:3000/log/stats/${userID}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -25,15 +29,58 @@ function Home() {
             (response) => response.json()
         ).then((data) => {
             // props.updateToken(data.sessionToken)
-                         
+              console.log("home data:", data)   
+              
+              
               //***** MEAL POINTS **** //
-              setMPoints(data[0].numberOfPoints);
+              if (data[0]?.typeOfPoint === "meals"){
+
+              setMPoints(data[0]?.numberOfPoints);
+
+              } else if (data[0]?.typeOfPoint === "drinks") {
                       
               // ***** DRINKS POINTS **** //
-              setdrPoints(data[1].numberOfPoints); 
+              setdrPoints(data[0]?.numberOfPoints); 
+
+              } else {
               
               //***** DESSERT POINTS **** //
-              setdePoints(data[2].numberOfPoints);// 
+              setdePoints(data[0]?.numberOfPoints);//
+              } 
+
+
+              if (data[1]?.typeOfPoint === "meals"){
+
+                setMPoints(data[1]?.numberOfPoints);
+  
+                } else if (data[1]?.typeOfPoint === "drinks") {
+                        
+                // ***** DRINKS POINTS **** //
+                setdrPoints(data[1]?.numberOfPoints); 
+  
+                } else {
+                
+                //***** DESSERT POINTS **** //
+                setdePoints(data[1]?.numberOfPoints);//
+                } 
+
+
+                if (data[2]?.typeOfPoint === "meals"){
+
+                  setMPoints(data[2]?.numberOfPoints);
+    
+                  } else if (data[2]?.typeOfPoint === "drinks") {
+                          
+                  // ***** DRINKS POINTS **** //
+                  setdrPoints(data[2]?.numberOfPoints); 
+    
+                  } else {
+                  
+                  //***** DESSERT POINTS **** //
+                  setdePoints(data[2]?.numberOfPoints);//
+                  } 
+              
+             
           
         })
     
