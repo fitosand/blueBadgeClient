@@ -48,7 +48,7 @@ function DrinksApp(props){
         <div>Drinks</div>
         <br></br>
         {props.drPoints > 9 ? 
-        <button className="RedeemButton">Redeem</button>:
+        <button className="RedeemButton">Redeem (1)</button>:
         <button onClick={UpdateDrPoints} className="CheckInButton">check in</button>
         }       
       </div>
