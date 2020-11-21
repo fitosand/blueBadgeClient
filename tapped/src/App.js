@@ -43,7 +43,7 @@ function App() {
             <Route path="/" exact > <Home/> </Route>
           </Switch> :
 
-          <Auth updateToken={updateToken}/>}
+          <Auth updateToken={updateToken} sessionToken={sessionToken}/>}
         </div>
       </div>
     </Router>

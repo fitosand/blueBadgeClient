@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Col} from 'reactstrap';
+import {Col, Container, Row} from 'reactstrap';
 import Signup from './Signup';
 import Login from './Login';
 import Update from './UpdateUser'
@@ -8,6 +8,7 @@ import Update from './UpdateUser'
 
 const Auth = (props) => {
     return (
+        <>
         <div className="LoginWrapper">
             <div className="LoginInputBoxes">
             <h1>🍻</h1>
@@ -37,17 +38,18 @@ const Auth = (props) => {
             </div>
         </div>
         
-        // <Container className="auth-container">
+        <Container className="auth-container">
             
-        //     <Row>
-        //         <Col md="6" className="login-col">
-        //             <Login updateToken={props.updateToken}/>
-        //         </Col>
-        //         <Col md="6" className="login-col">
-        //             <Update />
-        //         </Col>
-        //     </Row>
-        // </Container>
+            <Row>
+                <Col md="6" className="login-col">
+                    <Login updateToken={props.updateToken}/>
+                </Col>
+                <Col md="6" className="login-col">
+                    <Update sessionToken = {props.sessionToken} />
+                </Col>
+            </Row>
+        </Container>
+        </>
        
     )
 }

@@ -37,6 +37,8 @@ function Home() {
               //***** DESSERT POINTS **** //
               setdePoints(data[2].numberOfPoints);// 
 
+              //How are the points stored in the database?
+
       
         })
     
