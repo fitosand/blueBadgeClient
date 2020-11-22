@@ -11,11 +11,11 @@ const Update = (props) => {
             body: JSON.stringify({user:{email: email}}),
             headers: new Headers({
                 'Content-Type': 'application/json',
-                "Authorization": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNjA1NzI5ODE0LCJleHAiOjE2MzcyNjU4MTR9.Kq7UKbWMEbNJinAo_bmjboLWoABeL8pWxXyapkIB3kE'
+                "Authorization": props.sessionToken
             })
-        }) .then (
+        }).then (
             (response) => response.json()
-        ) .then((data) => {
+        ).then((data) => {
             console.log(data);
             props.updateToken(data.sessionToken)
         })

@@ -10,10 +10,8 @@ import Login from "./components/Login";
 
 
 function App() {
+  
   const [sessionToken, setSessionToken] = useState('');
-
-
-  const isLoggedIn = true;
 
   useEffect(() => {
     if (localStorage.getItem('token')){
@@ -36,13 +34,16 @@ function App() {
     <Router>
       <div className="App">
         {/* show navbar if logged in */}
-        {isLoggedIn ? <Navbar /> : null}
+        {sessionToken ? <Navbar /> : null}
         <div className="Center">
+          {sessionToken ? 
+          
           <Switch>
-            <Route path="/stats" component={Stats} />
-            <Route path="/" exact component={isLoggedIn ? Home : Login} />
-            <Auth />
-          </Switch>
+            <Route path="/stats" > <Stats/> </Route>
+            <Route path="/" exact > <Home/> </Route>
+          </Switch> :
+
+          <Auth updateToken={updateToken} sessionToken={sessionToken}/>}
         </div>
       </div>
     </Router>
@@ -51,6 +52,3 @@ function App() {
 
 
 export default App;
-
-
-

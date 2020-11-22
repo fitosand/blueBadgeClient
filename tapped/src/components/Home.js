@@ -3,8 +3,12 @@ import "../App.css";
 import Desserts from "./Desserts";
 import Meals from "./Meals";
 import Drinks from "./Drinks";
+import Login from "../auth/Login";
+
+
 
 function Home() {
+  const userID = localStorage.getItem("userID")
   useEffect(() => {
     fetchItems();
   }, []);
@@ -14,26 +18,72 @@ function Home() {
   const [dePoints, setdePoints] = useState([]);
 
   const fetchItems = async () => {
-    // ***** MEAL POINTS **** //
-    // const data = await fetch("http://localhost:3000/log/stats/2");
-    const data = await fetch("https://swapi.dev/api/people/1/");
-    const items = await data.json();
-    console.log(items.mass);
-    setMPoints(items.mass);
+    
+    //need to specify user (stats/:id) -> passed as prop from Nav?
+    fetch(`http://localhost:3000/log/stats/${userID}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(
+            (response) => response.json()
+        ).then((data) => {
+            // props.updateToken(data.sessionToken)
+              console.log("home data:", data)   
+              
+              
+              //***** MEAL POINTS **** //
+              if (data[0]?.typeOfPoint === "meals"){
 
-    // ***** DRINKS POINTS **** //
-    // const data = await fetch("http://localhost:3000/log/stats/2");
-    const data2 = await fetch("https://swapi.dev/api/people/2/");
-    const items2 = await data2.json();
-    console.log(items2.mass);
-    setdrPoints(items2.mass);
+              setMPoints(data[0]?.numberOfPoints);
 
-    // ***** DESSERT POINTS **** //
-    // const data = await fetch("http://localhost:3000/log/stats/2");
-    const data3 = await fetch("https://swapi.dev/api/people/3/");
-    const items3 = await data3.json();
-    console.log(items3.mass);
-    setdePoints(items3.mass);
+              } else if (data[0]?.typeOfPoint === "drinks") {
+                      
+              // ***** DRINKS POINTS **** //
+              setdrPoints(data[0]?.numberOfPoints); 
+
+              } else {
+              
+              //***** DESSERT POINTS **** //
+              setdePoints(data[0]?.numberOfPoints);//
+              } 
+
+
+              if (data[1]?.typeOfPoint === "meals"){
+
+                setMPoints(data[1]?.numberOfPoints);
+  
+                } else if (data[1]?.typeOfPoint === "drinks") {
+                        
+                // ***** DRINKS POINTS **** //
+                setdrPoints(data[1]?.numberOfPoints); 
+  
+                } else {
+                
+                //***** DESSERT POINTS **** //
+                setdePoints(data[1]?.numberOfPoints);//
+                } 
+
+
+                if (data[2]?.typeOfPoint === "meals"){
+
+                  setMPoints(data[2]?.numberOfPoints);
+    
+                  } else if (data[2]?.typeOfPoint === "drinks") {
+                          
+                  // ***** DRINKS POINTS **** //
+                  setdrPoints(data[2]?.numberOfPoints); 
+    
+                  } else {
+                  
+                  //***** DESSERT POINTS **** //
+                  setdePoints(data[2]?.numberOfPoints);//
+                  } 
+              
+             
+          
+        })
+    
   };
 
   return (

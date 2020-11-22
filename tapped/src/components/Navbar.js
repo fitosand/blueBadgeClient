@@ -2,15 +2,26 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function Navbar() {
-  console.log("hi");
+
+  
+
+  // USER LOGOUT FUNCTION
+
+  const clearToken = () => {
+    localStorage.clear();
+   
+    console.log('sessionToken ==> $(localStorage.sessionToken}');
+    window.location.href = '/';
+  }
+
   return (
     <div className="navbar">
       <div className="Top">
         <span className="logo">
-          <Link to="/">logo</Link>
+          <Link to="/">Tapped</Link>
         </span>
         <Link to="/stats">Stats</Link>
-        <span className="Login"> logout </span>
+        <button onClick={clearToken} className="Login"> logout </button>
       </div>
     </div>
   );

@@ -9,6 +9,7 @@ const Signup = (props) => {
     const [password, setPassword] = useState('');
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);
+    const [ userID, setUserId ] = useState('');
     const {
         buttonLabel,
         className
@@ -26,37 +27,65 @@ const Signup = (props) => {
             (response) => response.json()
         ).then((data) => {
             props.updateToken(data.sessionToken)
+            setUserId(data.user.id);
+            fetch("http://localhost:3000/log/post", {
+                method: 'POST',
+                body: JSON.stringify({"typeOfPoint": "meals", "numberOfPoints": "1"}),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': data.sessionToken
+                    
+                }});
+            fetch("http://localhost:3000/log/post", {
+                method: 'POST',
+                body: JSON.stringify({"typeOfPoint": "drinks", "numberOfPoints": "1"}),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': data.sessionToken
+                    
+                }});
+            fetch("http://localhost:3000/log/post", {
+                method: 'POST',
+                body: JSON.stringify({"typeOfPoint": "desserts", "numberOfPoints": "1"}),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': data.sessionToken
+                    
+                }});
+            
         })
         console.log(email, password);
     }
 
     return (
         <div>
-            <Button color="danger" onClick={toggle}>Sign Up</Button>
-            <Modal isOpen={modal} toggle={toggle} className={className}>
-                <ModalHeader toggle={toggle}>Signup</ModalHeader>
-                <Form onSubmit={handleSubmit}>
-                <FormGroup>
-                        <Label htmlFor="firstName">First Name</Label>
-                        <Input onChange={(e) => setfirstName(e.target.value)} name="firstName" value={firstName} />
-                    </FormGroup>
+            
+                <Button color="danger" onClick={toggle}>Sign Up</Button>
+                <Modal isOpen={modal} toggle={toggle} className={className}>
+                    <ModalHeader toggle={toggle}>Signup</ModalHeader>
+                    <Form onSubmit={handleSubmit}>
                     <FormGroup>
-                        <Label htmlFor="lastName">Last Name</Label>
-                        <Input onChange={(e) => setlastName(e.target.value)} name="lastName" value={lastName} />
-                    </FormGroup>
-                    <FormGroup>
-                        <Label htmlFor="email">Email</Label>
-                        <Input onChange={(e) => setEmail(e.target.value)} name="email" value={email} />
-                    </FormGroup>
-                    <FormGroup>
-                        <Label htmlFor="password">Password</Label>
-                        <Input onChange={(e) => setPassword(e.target.value)} name="password" value={password} />
-                    </FormGroup>
-                    <Button type="submit">Signup</Button>
-                    <Button color="secondary" onClick={toggle}>Cancel</Button>
-                </Form>
-            </Modal>
-        </div>
+                            <Label htmlFor="firstName">First Name</Label>
+                            <Input onChange={(e) => setfirstName(e.target.value)} name="firstName" value={firstName} />
+                        </FormGroup>
+                        <FormGroup>
+                            <Label htmlFor="lastName">Last Name</Label>
+                            <Input onChange={(e) => setlastName(e.target.value)} name="lastName" value={lastName} />
+                        </FormGroup>
+                        <FormGroup>
+                            <Label htmlFor="email">Email</Label>
+                            <Input onChange={(e) => setEmail(e.target.value)} name="email" value={email} />
+                        </FormGroup>
+                        <FormGroup>
+                            <Label htmlFor="password">Password</Label>
+                            <Input onChange={(e) => setPassword(e.target.value)} name="password" value={password} />
+                        </FormGroup>
+                        <Button type="submit">Signup</Button>
+                        <Button color="secondary" onClick={toggle}>Cancel</Button>
+                    </Form>
+                </Modal>
+                </div>
+       
     )
 }
 
