@@ -3,6 +3,7 @@ import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import VisibilitySensor from "react-visibility-sensor";
 
+
 function DrinksApp(props){
 
   
@@ -30,6 +31,16 @@ function DrinksApp(props){
       
     };
 
+
+    function DrinkRedeem(){
+
+      return (
+          <div>
+              <img src={require('../assets/FreeBeer.jpg')} alt="redeem coupon"/>
+          </div>
+      )
+  }
+
     return(
   <div className="Wrapper">
     <div className="InsideBox">
@@ -48,7 +59,7 @@ function DrinksApp(props){
         <div>Drinks</div>
         <br></br>
         {props.drPoints > 9 ? 
-        <button className="RedeemButton">Redeem (1)</button>:
+        <button onClick={DrinkRedeem} className="RedeemButton">Redeem (1)</button>:
         <button onClick={UpdateDrPoints} className="CheckInButton">check in</button>
         }       
       </div>
