@@ -4,6 +4,7 @@ import Desserts from "./Desserts";
 import Meals from "./Meals";
 import Drinks from "./Drinks";
 import Login from "../auth/Login";
+import API_URL from "../env"
 
 
 
@@ -20,7 +21,7 @@ function Home() {
   const fetchItems = () => {
     
     //need to specify user (stats/:id) -> passed as prop from Nav?
-    fetch(`http://localhost:3000/log/stats/${userID}`, {
+    fetch(`${API_URL}/log/stats/${userID}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'

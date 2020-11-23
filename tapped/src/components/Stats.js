@@ -1,7 +1,7 @@
 import React from "react";
 import {useState} from 'react';
 import {Form, FormGroup, Label, Input, Button} from 'reactstrap';
-
+import API_URL from "../env"
 
 
 const Stats = (props) => {
@@ -11,7 +11,7 @@ const Stats = (props) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        fetch('http://localhost:3000/user/update', {
+        fetch(`${API_URL}/user/update`, {
             method: 'PUT',
             body: JSON.stringify({email: email}),
             headers: {

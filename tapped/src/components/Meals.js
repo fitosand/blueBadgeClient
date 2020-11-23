@@ -2,6 +2,7 @@ import React, { useState, useEffect }  from "react";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import VisibilitySensor from "react-visibility-sensor";
+import API_URL from "../env"
 
 import mealRedeem from '../assets/FreeApp.jpg';
 
@@ -18,7 +19,7 @@ function MealsApp(props) {
 
   function resetCount(){
 
-    fetch("http://localhost:3000/log/post", {
+    fetch(`${API_URL}/log/post`, {
       method: 'POST',
       body: JSON.stringify({"typeOfPoint": "meals", "numberOfPoints": 0 }),
       headers: {
@@ -47,7 +48,7 @@ function MealsApp(props) {
   
   const UpdateMPoints = () => {
 
-    fetch("http://localhost:3000/log/update", {
+    fetch(`${API_URL}/log/update`, {
       method: 'PUT',
       body: JSON.stringify({"typeOfPoint": "meals", "owner": userID}),
       headers: {
@@ -71,7 +72,7 @@ function MealsApp(props) {
 
     const resetPoints = () => {
 
-      fetch("http://localhost:3000/log/update/reset", {
+      fetch(`${API_URL}/log/update/reset`, {
         method: 'PUT',
         body: JSON.stringify({"typeOfPoint": "meals", "numberOfPoints": 0, "owner": userID}),
         headers: {

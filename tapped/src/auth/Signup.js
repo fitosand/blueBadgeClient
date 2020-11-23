@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import { Modal, ModalHeader } from 'reactstrap';
+import API_URL from "../env"
 
 const Signup = (props) => {
     const [firstName, setfirstName] = useState('');
@@ -17,7 +18,7 @@ const Signup = (props) => {
 
     let handleSubmit = (event) => { //1
         event.preventDefault();
-        fetch("http://localhost:3000/user/signup", {
+        fetch(`${API_URL}/user/signup`, {
             method: 'POST',
             body: JSON.stringify({ firstName: firstName, lastName: lastName, email: email, password: password }),
             headers: {
@@ -28,7 +29,7 @@ const Signup = (props) => {
         ).then((data) => {
             props.updateToken(data.sessionToken)
             setUserId(data.user.id);
-            fetch("http://localhost:3000/log/post", {
+            fetch(`${API_URL}/log/post`, {
                 method: 'POST',
                 body: JSON.stringify({"typeOfPoint": "meals", "numberOfPoints": "1"}),
                 headers: {
@@ -36,7 +37,7 @@ const Signup = (props) => {
                     'Authorization': data.sessionToken
                     
                 }});
-            fetch("http://localhost:3000/log/post", {
+            fetch(`${API_URL}/log/post`, {
                 method: 'POST',
                 body: JSON.stringify({"typeOfPoint": "drinks", "numberOfPoints": "1"}),
                 headers: {
@@ -44,7 +45,7 @@ const Signup = (props) => {
                     'Authorization': data.sessionToken
                     
                 }});
-            fetch("http://localhost:3000/log/post", {
+            fetch(`${API_URL}/log/post`, {
                 method: 'POST',
                 body: JSON.stringify({"typeOfPoint": "desserts", "numberOfPoints": "1"}),
                 headers: {
