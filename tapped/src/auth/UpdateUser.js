@@ -5,8 +5,9 @@ const Update = (props) => {
     const [email, setEmail] = useState('');
 
     const handleSubmit = (event) => {
+        
         event.preventDefault();
-        fetch('http://localhost:3000/user/update', {
+        fetch('http://localhost:3000/updateuser', {
             method: 'PUT',
             body: JSON.stringify({user:{email: email}}),
             headers: new Headers({
@@ -16,7 +17,8 @@ const Update = (props) => {
         }).then (
             (response) => response.json()
         ).then((data) => {
-            console.log(data);
+            console.log("works")
+            // console.log(data);
             props.updateToken(data.sessionToken)
         })
     }

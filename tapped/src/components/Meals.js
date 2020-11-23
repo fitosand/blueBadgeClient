@@ -19,26 +19,50 @@ function MealsApp(props) {
     setDisplayImage(true)
   }
 
-  function imageOff() {
-    setDisplayImage(false)
-  }
+  function resetCount(){
 
-  const sessionToken = localStorage.getItem("sessionToken")
-  const UpdateMPoints = () => {
-
-  
-    fetch("http://localhost:3000/log/update", {
-      method: 'PUT',
-      body: JSON.stringify({"typeOfPoint": "meals"}),
+    fetch("http://localhost:3000/log/post", {
+      method: 'POST',
+      body: JSON.stringify({"typeOfPoint": "meals", "numberOfPoints": 0 }),
       headers: {
           'Content-Type': 'application/json',
           'Authorization': sessionToken
+          
+          
+      }
+      
+    })
+
+    window.location.reload();
+
+  }
+
+  function imageOff() {
+    setDisplayImage(false);
+    alert("congratulations! check your email for further instructions!")
+    resetCount();
+  }
+
+  const userID = localStorage.getItem("userID")
+
+  const sessionToken = localStorage.getItem("sessionToken")
+  const UpdateMPoints = () => {
+  
+  
+    fetch("http://localhost:3000/log/update", {
+      method: 'PUT',
+      body: JSON.stringify({"typeOfPoint": "meals", "owner": userID }),
+      headers: {
+          'Content-Type': 'application/json',
+          'Authorization': sessionToken
+          
           
       }
       }).then(
         (response) => response.json()
       
       ).then((data) => {
+        console.log(sessionToken);
           console.log(data);
           window.location.reload();
       }).catch((error) => {
@@ -65,8 +89,8 @@ function MealsApp(props) {
         <ion-icon name="restaurant-outline"></ion-icon>
         <div>Meals</div>
         <br></br>
-        {props.mPoints > 9 ? 
-        <button onClick={imageOn} className="RedeemButton">Redeem</button>:
+        {props.mPoints %10 == 0 ? 
+        <button onClick={imageOff} className="RedeemButton">Redeem</button>:
         <button onClick={UpdateMPoints} className="CheckInButton">check in</button>
         }
         {displayImage ? <img src={mealRedeem} alt="redeem coupon" style={{width: 200}}/> : < > </>}
