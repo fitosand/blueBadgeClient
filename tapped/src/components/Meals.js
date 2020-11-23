@@ -3,7 +3,6 @@ import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import VisibilitySensor from "react-visibility-sensor";
 import Update from "../auth/UpdateUser";
-import mealRedeem from '../assets/FreeApp.jpg';
 
 
 
@@ -11,18 +10,6 @@ import mealRedeem from '../assets/FreeApp.jpg';
 
 
 function MealsApp(props) {
-
-
-  const [displayImage, setDisplayImage] = useState(false) 
-  
-  function imageOn() {
-    setDisplayImage(true)
-  }
-
-  function imageOff() {
-    setDisplayImage(false)
-  }
-
   const sessionToken = localStorage.getItem("sessionToken")
   const UpdateMPoints = () => {
 
@@ -66,10 +53,9 @@ function MealsApp(props) {
         <div>Meals</div>
         <br></br>
         {props.mPoints > 9 ? 
-        <button onClick={imageOn} className="RedeemButton">Redeem</button>:
+        <button onClick={UpdateMPoints} className="RedeemButton">Redeem (1)</button>:
         <button onClick={UpdateMPoints} className="CheckInButton">check in</button>
         }
-        {displayImage ? <img src={mealRedeem} alt="redeem coupon" style={{width: 200}}/> : < > </>}
       </div>
     </div>
   </div>
