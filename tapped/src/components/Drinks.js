@@ -1,12 +1,22 @@
-import React from "react";
+import React, {useState} from "react";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import VisibilitySensor from "react-visibility-sensor";
+import drinkRedeem from '../assets/FreeBeer.jpg';
 
 
 function DrinksApp(props){
 
+  const [displayImage, setDisplayImage] = useState(false) 
   
+  function imageOn() {
+    setDisplayImage(true)
+  }
+
+  function imageOff() {
+    setDisplayImage(false)
+  }
+
 
   const UpdateDrPoints = () => {
     const sessionToken = localStorage.getItem("sessionToken")
@@ -32,16 +42,8 @@ function DrinksApp(props){
     };
 
 
-    function DrinkRedeem(){
 
-      return (
-          <div>
-              <img src={require('../assets/FreeBeer.jpg')} alt="redeem coupon"/>
-          </div>
-      )
-  }
-
-    return(
+  return(
   <div className="Wrapper">
     <div className="InsideBox">
       <div className="Icon">
@@ -59,9 +61,12 @@ function DrinksApp(props){
         <div>Drinks</div>
         <br></br>
         {props.drPoints > 9 ? 
-        <button onClick={DrinkRedeem} className="RedeemButton">Redeem (1)</button>:
+        <button onClick={imageOn} className="RedeemButton">Redeem</button>:
         <button onClick={UpdateDrPoints} className="CheckInButton">check in</button>
-        }       
+        }
+
+        {displayImage ? <img src={drinkRedeem} alt="redeem coupon" style={{width: 200}}/> : < > </>}
+
       </div>
     </div>
   </div>
