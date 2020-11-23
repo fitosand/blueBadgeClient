@@ -17,16 +17,19 @@ function MealsApp(props) {
   }
 
   function imageOff() {
+    resetPoints();
     setDisplayImage(false)
-    UpdateMPoints();
+
+
   }
 
   const sessionToken = localStorage.getItem("sessionToken")
+  const userID = localStorage.getItem("userID")
   const UpdateMPoints = () => {
 
     fetch("http://localhost:3000/log/update", {
       method: 'PUT',
-      body: JSON.stringify({"typeOfPoint": "meals"}),
+      body: JSON.stringify({"typeOfPoint": "meals", "owner": userID}),
       headers: {
           'Content-Type': 'application/json',
           'Authorization': sessionToken
@@ -41,14 +44,14 @@ function MealsApp(props) {
       }).catch((error) => {
         return "error"; // note 2
       });
-      
+      props.fetchItems()
     };
 
     const resetPoints = () => {
 
-      fetch("http://localhost:3000/log/post", {
-        method: 'POST',
-        body: JSON.stringify({"typeOfPoint": "meals", "numberOfPoints": 0}),
+      fetch("http://localhost:3000/log/update/reset", {
+        method: 'PUT',
+        body: JSON.stringify({"typeOfPoint": "meals", "numberOfPoints": 0, "owner": userID}),
         headers: {
             'Content-Type': 'application/json',
             'Authorization': sessionToken
@@ -59,13 +62,13 @@ function MealsApp(props) {
         
         ).then((data2) => {
             console.log(props.mPoints);
-            //window.location.reload(true);
+            window.location.reload(true);
          
         }).catch((error) => {
           return "error"; // note 2
         });
 
-        UpdateMPoints();
+        //UpdateMPoints();
         
         
       };
@@ -80,7 +83,7 @@ function MealsApp(props) {
           {({ isVisible }) => {
             const percentage = isVisible ? props.mPoints : 0;
             return (
-              <CircularProgressbar value={(percentage/100)*100} text={`${percentage}/100`} />
+              <CircularProgressbar value={(percentage/10)*100} text={`${percentage}/10`} />
             );
           }}
         </VisibilitySensor>
@@ -89,15 +92,17 @@ function MealsApp(props) {
         <ion-icon name="restaurant-outline"></ion-icon>
         <div>Meals</div>
         <br></br>
-        {props.mPoints %10 == 0 ? 
+
+        {props.mPoints !== 10 ? 
+
+        <button onClick={UpdateMPoints} className="CheckInButton">check in</button> :
+
         <div>
         <img src={mealRedeem} alt="redeem coupon" style={{width: 200}}/> 
-        {/* <span>{setRedeemNum(1)}</span> */}
         <button onClick={imageOff} className="RedeemButton">Redeem ({redeemNum})</button>
-
-        </div> :
-        <button onClick={UpdateMPoints} className="CheckInButton">check in</button>
+        </div> 
         }
+
         {props.mPoints > 98 ?
           <img src={mealRedeem} alt="redeem coupon" style={{width: 200}}/> : null
 

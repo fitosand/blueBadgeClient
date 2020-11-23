@@ -88,7 +88,7 @@ function Home() {
 
   return (
     <div className="Center">
-      <Meals mPoints={mPoints} />
+      <Meals mPoints={mPoints} fetchItems={fetchItems}/>
       <Drinks drPoints={drPoints} />
       <Desserts dePoints={dePoints} />
     </div>

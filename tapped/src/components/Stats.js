@@ -4,23 +4,24 @@ import {Form, FormGroup, Label, Input, Button} from 'reactstrap';
 
 
 
-const Update = () => {
+const Stats = (props) => {
     const sessionToken = localStorage.getItem("token")
-    const [email, setEmail] = useState('email');
+    const userID = localStorage.getItem("userID")
+    const [email, setEmail] = useState('');
 
     const handleSubmit = (event) => {
         event.preventDefault();
         fetch('http://localhost:3000/user/update', {
             method: 'PUT',
-            body: JSON.stringify({user:{email: email}}),
-            headers: new Headers({
+            body: JSON.stringify({email: email}),
+            headers: {
                 'Content-Type': 'application/json',
-                "Authorization": sessionToken
-            })
+                "Authorization": props.sessionToken
+            }
         }).then (
             (response) => response.json()
         ).then((data) => {
-            console.log(data);
+            console.log("stats.js message", data);
             console.log(email)
             //props.updateToken(data.sessionToken)
         })
@@ -31,11 +32,11 @@ const Update = () => {
             <Form onSubmit = {handleSubmit}>
                 <FormGroup>
                     <Label htmlFor="email">Email</Label>
-                    <Input required name = "email" value={email} onChange = {(e) => setEmail('email')}/>
+                    <Input required name = "email" value={email} onChange = {(e) => setEmail(e.target.value)}/>
                 </FormGroup>
                 <Button type="submit">Update Email</Button>
             </Form>
         </div>
     )
 }
-export default Update;
+export default Stats;

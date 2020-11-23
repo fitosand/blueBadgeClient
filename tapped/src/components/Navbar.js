@@ -21,7 +21,7 @@ function Navbar(props) {
         <span className="logo">
           <Link to="/">Tapped</Link>
         </span>
-        <Link to='/stats' sessionToken = {props.sessionToken}>Update Email</Link>
+        <Link to='/stats'>Update Email</Link>
         <button onClick={clearToken} className="Login"> logout </button>
       </div>
     </div>

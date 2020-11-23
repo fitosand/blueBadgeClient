@@ -1,12 +1,15 @@
-import React, {useState} from "react";
+import React, { useState, useEffect }  from "react";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import VisibilitySensor from "react-visibility-sensor";
+
 import drinkRedeem from '../assets/FreeBeer.jpg';
 
 
-function DrinksApp(props){
 
+function DrinksApp(props) {
+
+  const [redeemNum, setRedeemNum] = useState(0)
   const [displayImage, setDisplayImage] = useState(false) 
   
   function imageOn() {
@@ -14,16 +17,19 @@ function DrinksApp(props){
   }
 
   function imageOff() {
+    resetPoints();
     setDisplayImage(false)
+
+
   }
 
+  const sessionToken = localStorage.getItem("sessionToken")
+  const userID = localStorage.getItem("userID")
+  const UpdatedrPoints = () => {
 
-  const UpdateDrPoints = () => {
-    const sessionToken = localStorage.getItem("sessionToken")
-    console.log("did");
     fetch("http://localhost:3000/log/update", {
       method: 'PUT',
-      body: JSON.stringify({"typeOfPoint": "drinks"}),
+      body: JSON.stringify({"typeOfPoint": "drinks", "owner": userID}),
       headers: {
           'Content-Type': 'application/json',
           'Authorization': sessionToken
@@ -38,12 +44,38 @@ function DrinksApp(props){
       }).catch((error) => {
         return "error"; // note 2
       });
-      
+      props.fetchItems()
     };
 
+    const resetPoints = () => {
 
+      fetch("http://localhost:3000/log/update/reset", {
+        method: 'PUT',
+        body: JSON.stringify({"typeOfPoint": "drinks", "numberOfPoints": 0, "owner": userID}),
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': sessionToken
+            
+        }
+        }).then(
+          (response2) => response2.json()
+        
+        ).then((data2) => {
+            console.log(props.dePoints);
+            window.location.reload(true);
+         
+        }).catch((error) => {
+          return "error"; // note 2
+        });
 
-  return(
+        //UpdateMPoints();
+        
+        
+      };
+  
+    
+
+  return (
   <div className="Wrapper">
     <div className="InsideBox">
       <div className="Icon">
@@ -56,21 +88,31 @@ function DrinksApp(props){
           }}
         </VisibilitySensor>
       </div>
-      <div>
-        <ion-icon name="beer-outline"></ion-icon>
+      <div className="text">
+        <ion-icon name="restaurant-outline"></ion-icon>
         <div>Drinks</div>
         <br></br>
-        {props.drPoints > 9 ? 
-        <button onClick={imageOn} className="RedeemButton">Redeem</button>:
-        <button onClick={UpdateDrPoints} className="CheckInButton">check in</button>
+
+        {props.drPoints !== 10 ? 
+
+        <button onClick={UpdatedrPoints} className="CheckInButton">check in</button> :
+
+        <div>
+        <img src={drinkRedeem} alt="redeem coupon" style={{width: 200}}/> 
+        <button onClick={imageOff} className="RedeemButton">Redeem ({redeemNum})</button>
+        </div> 
         }
 
-        {displayImage ? <img src={drinkRedeem} alt="redeem coupon" style={{width: 200}}/> : < > </>}
+        {props.drPoints > 98 ?
+          <img src={drinkRedeem} alt="redeem coupon" style={{width: 200}}/> : null
+
+
+        }
 
       </div>
     </div>
   </div>
     );
-};
+}
 
 export default DrinksApp;
