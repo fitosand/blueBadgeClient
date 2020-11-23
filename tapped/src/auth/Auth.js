@@ -3,7 +3,8 @@ import React from 'react';
 import {Col, Container, Row} from 'reactstrap';
 import Signup from './Signup';
 import Login from './Login';
-import Update from './UpdateUser'
+import Stats from '../components/Stats'
+
 
 
 const Auth = (props) => {
@@ -46,7 +47,7 @@ const Auth = (props) => {
                     <Login updateToken={props.updateToken}/>
                 </Col> */}
                 <Col md="6" className="login-col">
-                    <Update sessionToken = {props.sessionToken} />
+                    {/* <Update sessionToken = {props.sessionToken} /> */}
                 </Col>
             </Row>
         </Container>

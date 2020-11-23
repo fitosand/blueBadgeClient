@@ -39,7 +39,7 @@ function App() {
           {sessionToken ? 
           
           <Switch>
-            <Route path="/stats" > <Stats/> </Route>
+            <Route path="/stats" > <Stats sessionToken={sessionToken}/> </Route>
             <Route path="/" exact > <Home/> </Route>
           </Switch> :
 

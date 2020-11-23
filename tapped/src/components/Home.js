@@ -91,9 +91,9 @@ function Home() {
 
   return (
     <div className="Center">
-      <Meals mPoints={mPoints} />
-      <Drinks drPoints={drPoints} />
-      <Desserts dePoints={dePoints} />
+      <Meals mPoints={mPoints} fetchItems={fetchItems}/>
+      <Drinks drPoints={drPoints} fetchItems={fetchItems} />
+      <Desserts dePoints={dePoints} fetchItems={fetchItems} />
     </div>
   );
 }

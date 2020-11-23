@@ -1,18 +1,15 @@
-import React, { useState }  from "react";
+import React, { useState, useEffect }  from "react";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import VisibilitySensor from "react-visibility-sensor";
-import Update from "../auth/UpdateUser";
+
 import mealRedeem from '../assets/FreeApp.jpg';
 
 
 
-//this.setState({ count: this.state.count + 1 })
-
-
 function MealsApp(props) {
 
-
+  const [redeemNum, setRedeemNum] = useState(1)
   const [displayImage, setDisplayImage] = useState(false) 
   
   function imageOn() {
@@ -38,20 +35,21 @@ function MealsApp(props) {
   }
 
   function imageOff() {
-    setDisplayImage(false);
-    alert("congratulations! check your email for further instructions!")
-    resetCount();
+    resetPoints();
+    setDisplayImage(false)
+
+
   }
 
   const userID = localStorage.getItem("userID")
 
   const sessionToken = localStorage.getItem("sessionToken")
+  
   const UpdateMPoints = () => {
-  
-  
+
     fetch("http://localhost:3000/log/update", {
       method: 'PUT',
-      body: JSON.stringify({"typeOfPoint": "meals", "owner": userID }),
+      body: JSON.stringify({"typeOfPoint": "meals", "owner": userID}),
       headers: {
           'Content-Type': 'application/json',
           'Authorization': sessionToken
@@ -68,11 +66,38 @@ function MealsApp(props) {
       }).catch((error) => {
         return "error"; // note 2
       });
-      
+      props.fetchItems()
     };
+
+    const resetPoints = () => {
+
+      fetch("http://localhost:3000/log/update/reset", {
+        method: 'PUT',
+        body: JSON.stringify({"typeOfPoint": "meals", "numberOfPoints": 0, "owner": userID}),
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': sessionToken
+            
+        }
+        }).then(
+          (response2) => response2.json()
+        
+        ).then((data2) => {
+            console.log(props.mPoints);
+            window.location.reload(true);
+         
+        }).catch((error) => {
+          return "error"; // note 2
+        });
+
+        //UpdateMPoints();
+        
+        
+      };
+  
     
 
-    return (
+  return (
   <div className="Wrapper">
     <div className="InsideBox">
       <div className="Icon">
@@ -86,14 +111,28 @@ function MealsApp(props) {
         </VisibilitySensor>
       </div>
       <div className="text">
-        <ion-icon name="restaurant-outline"></ion-icon>
-        <div>Meals</div>
-        <br></br>
-        {props.mPoints %10 == 0 ? 
-        <button onClick={imageOff} className="RedeemButton">Redeem</button>:
-        <button onClick={UpdateMPoints} className="CheckInButton">check in</button>
+        
+
+        {props.mPoints !== 10 ? 
+
+        <div>
+          <ion-icon name="restaurant-outline"></ion-icon>
+          <div>Meals</div>
+          <br></br>
+          <button onClick={UpdateMPoints} className="CheckInButton">check in</button> 
+        </div>:
+        <div>
+        <img src={mealRedeem} alt="redeem coupon" style={{width: 100}}/> 
+        <button onClick={imageOff} className="RedeemButton">Redeem ({redeemNum})</button>
+        </div> 
         }
-        {displayImage ? <img src={mealRedeem} alt="redeem coupon" style={{width: 200}}/> : < > </>}
+
+        {props.mPoints > 98 ?
+          <img src={mealRedeem} alt="redeem coupon" style={{width: 100}}/> : null
+
+
+        }
+        {/* {displayImage ? <img src={mealRedeem} alt="redeem coupon" style={{width: 200}}/> : < > </>} */}
       </div>
     </div>
   </div>
