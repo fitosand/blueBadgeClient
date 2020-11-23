@@ -5,6 +5,11 @@
   
 }
 
+body {
+  background-image: url('./assets/allbackground.jpg');
+  background-size: 50%;
+}
+
 
 button {
   outline: none;

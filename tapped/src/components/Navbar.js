@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function Navbar() {
+
+function Navbar(props) {
 
   
 
@@ -20,7 +21,7 @@ function Navbar() {
         <span className="logo">
           <Link to="/">Tapped</Link>
         </span>
-        <Link to="/stats">Stats</Link>
+        <Link to='/stats' sessionToken = {props.sessionToken}>Update Email</Link>
         <button onClick={clearToken} className="Login"> logout </button>
       </div>
     </div>
